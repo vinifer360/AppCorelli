@@ -46,8 +46,6 @@ include_dirs = https://github.com/python/cpython/blob/main/Include/cpython
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
-# Caminho do interpretador Python
-python3 = /usr/bin/python3.9
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/data/presplash.png
