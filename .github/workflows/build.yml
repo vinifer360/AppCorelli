@@ -10,11 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Python 3.10
+      - name: Install Python 3.11.3
         run: |
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update
-          sudo apt install python3.10
+          sudo apt install python3.11
 
       - name: Install Buildozer and Cython
         run: |
