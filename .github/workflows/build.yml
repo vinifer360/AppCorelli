@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -15,19 +15,29 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Install Buildozer dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip build-essential git zip unzip \
+            openjdk-8-jdk libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
+            libsdl2-ttf-dev libncurses5-dev libffi-dev libssl-dev \
+            liblzma-dev zlib1g-dev libgdbm-dev libnss3-dev \
+            libreadline-dev libsqlite3-dev wget curl llvm \
+            libncursesw5-dev xz-utils tk-dev libxml2-dev \
+            libxmlsec1-dev libffi-dev libbz2-dev
+
       - name: Install Buildozer and Cython
         run: |
           pip install --upgrade buildozer cython
+
+      - name: Verify Python Version
+        run: |
+          python3.9 --version
 
       - name: Get Date
         id: get-date
         run: |
           echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
-      
-      - name: Verify Python Version
-        run: |
-          python3.9 --version
-
 
       - name: Cache Buildozer global directory
         uses: actions/cache@v2
@@ -44,11 +54,11 @@ jobs:
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
-          command: buildozer android debug
-          buildozer_version: stable
+          spec-file: buildozer.spec
+          build-dir: .
 
-      - name: Upload artifacts
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: package
-          path: ${{ steps.buildozer.outputs.filename }}
+          name: apk-file
+          path: .buildozer/android/platform/build-arm64-v8a/dists/Corelli/build/outputs/apk/debug/Corelli-debug.apk
