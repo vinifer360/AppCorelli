@@ -15,6 +15,11 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Install Python 3.9 for build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3.9 python3.9-dev python3.9-venv
+
       - name: Install Buildozer dependencies
         run: |
           sudo apt update
@@ -33,6 +38,7 @@ jobs:
       - name: Verify Python Version
         run: |
           python3.9 --version
+          python3 --version
 
       - name: Get Date
         id: get-date
@@ -51,11 +57,8 @@ jobs:
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
 
       - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
-        with:
-          spec-file: buildozer.spec
-          build-dir: .
+        run: |
+          buildozer android debug
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
