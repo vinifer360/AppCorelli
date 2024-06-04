@@ -1,0 +1,422 @@
+<LoginScreen>:
+    FloatLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            md_bg_color: 5,5,5,0
+            specific_text_color: app.theme_cls.primary_color
+            pos_hint: {'top': 1}
+            elevation: 4
+            left_action_items: [["arrow-left-bold-box", lambda x: app.callback()]]
+
+        MDLabel:
+            text: "Faça o Login para acessar as funções!"
+            halign: "center"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.62}
+
+        MDTextField:
+            id: email
+            icon_left: "email"
+            hint_text: "Digite o seu E-mail"
+            on_focus: True
+            validator: "email"
+            text_color_normal: "white"
+            mode: "line"
+            helper_text_mode: "on_focus"
+            multiline: False
+            size_hint: (0.6, None)
+            height: dp(40)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.52}
+
+        MDRoundFlatIconButton:
+            text: "Login"
+            icon: "login"
+            size_hint: (0.4, None)
+            height: dp(5)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.30}
+            on_press: root.login()
+
+        MDRoundFlatIconButton:
+            text: "Novo Usuário?"
+            icon: "account-plus"
+            size_hint: (0.4, None)
+            height: dp(5)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+            on_press: root.cadastrar()
+
+        Label:
+            text: "Bem-vindo ao Aplicativo Gestão CorelliLog!"
+            size_hint: (1, None)
+            height: dp(32)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+
+<TelaPrincipal>:
+    FloatLayout:
+        orientation: "vertical"
+
+        MDRaisedButton:
+            text: 'Solicitar Coleta'
+            theme_text_color: "Custom"
+            theme_font_styles: "OVERLINE"
+            md_bg_color: 1, 1, 1, 1
+            text_color: "black"
+            line_color: "orange"
+            font_size: '12sp'
+            pos_hint: {'center_x': 0.25, 'center_y': 0.80}
+            halign: "center"
+            size_hint: (0.4, 0.3)
+            on_release: root.goto_SolicitarColeta()
+
+        MDRaisedButton:
+            text: 'Baixar Entrega'
+            theme_text_color: "Custom"
+            theme_font_styles: "OVERLINE"
+            md_bg_color: 1, 1, 1, 1
+            text_color: "black"
+            line_color: "orange"
+            font_size: '12sp'
+            pos_hint: {'center_x': 0.75, 'center_y': 0.80}
+            halign: "center"
+            size_hint: (0.4, 0.3)
+            on_release: root.goto_BaixarEntregas()
+
+        MDRaisedButton:
+            text: 'Ver Status'
+            theme_text_color: "Custom"
+            theme_font_styles: "OVERLINE"
+            md_bg_color: 1, 1, 1, 1
+            text_color: "black"
+            line_color: "orange"
+            font_size: '12sp'
+            pos_hint: {'center_x': 0.25, 'center_y': 0.48}
+            halign: "center"
+            size_hint: (0.4, 0.3)
+            on_release: root.goto_VerStatus()
+
+        MDRaisedButton:
+            text: 'Relatório'
+            theme_text_color: "Custom"
+            theme_font_styles: "OVERLINE"
+            md_bg_color: 1, 1, 1, 1
+            text_color: "black"
+            line_color: "orange"
+            font_size: '12sp'
+            pos_hint: {'center_x': 0.75, 'center_y': 0.48}
+            halign: "center"
+            size_hint: (0.4, 0.3)
+            on_release: root.goto_function2()
+
+<SolicitarColeta>:
+    FloatLayout:
+        orientation: "vertical"
+        cols: 1
+
+        MDTopAppBar:
+            title: "Preencha o Pedido de Coleta"
+            md_bg_color: 5,5,5,0
+            specific_text_color: app.theme_cls.primary_color
+            pos_hint: {'top': 1}
+            size_hint: (1, 0.05)
+            left_action_items: [["arrow-left-bold-box", lambda x: app.voltartelaprincipal()]]
+
+        MDTextField:
+            id: cep_field
+            hint_text: "CEP"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+            on_text: root.preencher_endereco()
+
+        MDTextField:
+            id: rua_field
+            hint_text: "Rua"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+
+        MDTextField:
+            id: numero_field
+            hint_text: "Número"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+        MDTextField:
+            id: complemento_field
+            hint_text: "Complemento"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+        MDTextField:
+            id: bairro_field
+            hint_text: "Bairro"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        MDTextField:
+            id: cidade_field
+            hint_text: "Cidade"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
+        MDTextField:
+            id: item_field
+            hint_text: "Item para Coleta"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+
+        MDRaisedButton:
+            text: "Selecionar Data"
+            size_hint: (0.05, 0.02)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.17}
+            on_release: root.selecionar_data()
+
+        MDRaisedButton:
+            text: "Selecionar Hora"
+            size_hint: (0.05, 0.02)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            on_release: root.selecionar_hora()
+
+        MDRaisedButton:
+            text: "Solicitar Coleta"
+            size_hint: (0.05, 0.02)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.04}
+            on_release: root.solicitarcoleta()
+
+<BaixarEntregas>:
+    FloatLayout:
+        cols: 1
+
+        MDTopAppBar:
+            title: "Baixar Entrega/Coleta"
+            md_bg_color: 5,5,5,0
+            specific_text_color: app.theme_cls.primary_color
+            pos_hint: {'top': 1}
+            elevation: 2
+            left_action_items: [["arrow-left-bold-box", lambda x: app.voltartelaprincipal()]]
+
+        MDCheckbox:
+            id: tipo_checkbox_entrega
+            title: "Entrega"
+            pos_hint: {'center_x': 0.35, 'center_y': 0.80}
+            size_hint: (None, None)
+            size: dp(120), dp(30)
+            on_active: root.salvar_tipo("Entrega") if self.active else None
+            active: False
+            label: "Entrega"
+
+        MDCheckbox:
+            id: tipo_checkbox_coleta
+            title: "Coleta"
+            pos_hint: {'center_x': 0.65, 'center_y': 0.80}
+            size_hint: (None, None)
+            size: dp(120), dp(30)
+            on_active: root.salvar_tipo("Coleta") if self.active else None
+            active: False
+            label: "Coleta"
+
+        MDLabel:
+            text: "Coleta"
+            theme_text_color: "Secondary"
+            font_style: "H5"
+            halign: "center"
+            pos_hint: {'center_x': 0.65, 'center_y': 0.85}
+
+        MDLabel:
+            text: "Entrega"
+            theme_text_color: "Secondary"
+            font_style: "H5"
+            halign: "center"
+            pos_hint: {'center_x': 0.35, 'center_y': 0.85}
+
+        MDLabel:
+            text: "Selecione agora a Região"
+            theme_text_color: "Secondary"
+            font_style: "H5"
+            halign: "center"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+
+        MDCheckbox:
+            id: regiao_checkbox_leste
+            pos_hint: {'center_x': 0.20, 'center_y': 0.65}
+            size_hint: (None, None)
+            size: dp(120), dp(30)
+            on_active: root.salvar_regiao("Leste") if self.active else None
+            active: False
+            label: "Leste"
+
+        MDLabel:
+            text: "LESTE"
+            theme_text_color: "Secondary"
+            font_style: "Body1"
+            halign: "center"
+            pos_hint: {'center_x': 0.20, 'center_y': 0.60}
+
+        MDCheckbox:
+            id: regiao_checkbox_sul
+            pos_hint: {'center_x': 0.40, 'center_y': 0.65}
+            size_hint: (None, None)
+            size: dp(120), dp(30)
+            on_active: root.salvar_regiao("Sul") if self.active else None
+            active: False
+            label: "Sul"
+
+        MDLabel:
+            text: "SUL"
+            theme_text_color: "Secondary"
+            font_style: "Body1"
+            halign: "center"
+            pos_hint: {'center_x': 0.40, 'center_y': 0.60}
+
+        MDCheckbox:
+            id: regiao_checkbox_oeste
+            pos_hint: {'center_x': 0.60, 'center_y': 0.65}
+            size_hint: (None, None)
+            size: dp(120), dp(30)
+            on_active: root.salvar_regiao("Oeste") if self.active else None
+            active: False
+            label: "Oeste"
+
+        MDLabel:
+            text: "OESTE"
+            theme_text_color: "Secondary"
+            font_style: "Body1"
+            halign: "center"
+            pos_hint: {'center_x': 0.60, 'center_y': 0.60}
+
+        MDCheckbox:
+            id: regiao_checkbox_norte
+            pos_hint: {'center_x': 0.80, 'center_y': 0.65}
+            size_hint: (None, None)
+            size: dp(120), dp(30)
+            on_active: root.salvar_regiao("Norte") if self.active else None
+            active: False
+            label: "Norte"
+
+        MDLabel:
+            text: "NORTE"
+            theme_text_color: "Secondary"
+            font_style: "Body1"
+            halign: "center"
+            pos_hint: {'center_x': 0.80, 'center_y': 0.60}
+
+        MDTextField:
+            id: descricao_field
+            hint_text: "Descrição"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.40}
+
+        MDRaisedButton:
+            text: "Baixar Entrega/Coleta"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.30}
+            on_release: root.baixar_entrega()
+
+        MDRaisedButton:
+            text: "Encerrar Lista"
+            size_hint: (0.8, None)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+            on_release: root.encerrar_lista()
+
+<VerStatus>:
+    FloatLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Ver Status"
+            md_bg_color: 5,5,5,0
+            specific_text_color: app.theme_cls.primary_color
+            pos_hint: {'top': 1}
+            elevation: 2
+            left_action_items: [["arrow-left-bold-box", lambda x: app.voltartelaprincipal()]]
+
+        MDRaisedButton:
+            text: 'Status Coletas Solicitadas'
+            theme_text_color: "Custom"
+            theme_font_styles: "OVERLINE"
+            md_bg_color: 1, 1, 1, 1
+            text_color: "black"
+            line_color: "orange"
+            font_size: '12sp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.60}
+            halign: "center"
+            size_hint: (0.8, None)
+            on_release: root.goto_coletaspedidas()
+
+        MDRaisedButton:
+            text: 'Status Entregas/Coletas Realizadas'
+            theme_text_color: "Custom"
+            theme_font_styles: "OVERLINE"
+            md_bg_color: 1, 1, 1, 1
+            text_color: "black"
+            line_color: "orange"
+            font_size: '12sp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.30}
+            halign: "center"
+            size_hint: (0.8, None)
+            on_release: root.goto_entregasfeitas()
+
+<ColetasPedidas>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: "Coletas Pedidas"
+            md_bg_color: 5,5,5,0
+            specific_text_color: app.theme_cls.primary_color
+            pos_hint: {'top': 1}
+            elevation: 2
+            left_action_items: [["arrow-left-bold-box", lambda x: app.voltar_ver_status()]]
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(20)
+            padding: dp(0.5)
+            spacing: dp(0.5)
+
+            MDTextField:
+                id: filtro_data
+                hint_text: "Data"
+                multiline: False
+                mode: "round"
+                theme_font_styles: "OVERLINE"
+                font_size: "12sp"
+                size_hint: (0.005, None)
+
+            MDTextField:
+                id: filtro_courier
+                hint_text: "Courier"
+                multiline: False
+                mode: "round"
+                theme_font_styles: "OVERLINE"
+                font_size: "12sp"
+                size_hint: (0.005, None)
+
+            MDRaisedButton:
+                text: "Aplicar Filtros"
+                theme_font_styles: "OVERLINE"
+                font_size: "10sp"
+                size_hint: (0.0002, 1.0)
+                on_release: root.aplicar_filtros()  # Verifique se aplicar_filtros está implementado em ColetasPedidas
+
+        ScrollView:
+            MDList:
+                id: lista_coletas
+                padding: dp(0.10)
+                spacing: dp(0.10)
+
+<EntregasFeitas>
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: "Coletas Realizadas"
+            md_bg_color: 5,5,5,0
+            specific_text_color: app.theme_cls.primary_color
+            pos_hint: {'top': 1}
+            elevation: 2
+            left_action_items: [["arrow-left-bold-box", lambda x: app.voltar_ver_status()]]
+        ScrollView:
+            MDList:
+                id: lista_coletas_realizadas
+                padding: dp(0.10)
+                spacing: dp(0.10)
