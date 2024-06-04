@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy,firebase_admin,kivymd,pillow,datetime
-requirements = python3==3.10.0,kivy==master,kivymd==1.2.0,requests,firebase_admin_admin==6.5.0,datetime, pillow
+requirements = python3==3.10.6,kivy==master,kivymd==1.2.0,requests,firebase_admin_admin==6.5.0,datetime, pillow
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -64,7 +64,7 @@ orientation = portrait
 # author = © Copyright Info
 
 # change the major version of python used by the app
-osx.python_version = 3.10.0
+osx.python_version = 3.10.6
 
 # Kivy version to use
 osx.kivy_version = 1.9.1
