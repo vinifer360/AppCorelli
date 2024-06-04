@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update
-          sudo apt install python3.11
+          sudo apt install python3.9
 
       - name: Install Buildozer and Cython
         run: |
@@ -40,7 +40,7 @@ jobs:
 
       - name: Set Python 3.11 as default
         run: |
-          sudo ln -sf /usr/bin/python3.11 /usr/bin/python3
+          sudo ln -sf /usr/bin/python3.9 /usr/bin/python3
         shell: bash
 
       - name: Build with Buildozer
