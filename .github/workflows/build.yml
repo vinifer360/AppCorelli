@@ -19,6 +19,17 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y python3.9 python3.9-dev python3.9-venv
+          
+      - name: Update Python 3.9 PATH
+        run: |
+          echo "Adding Python 3.9 to PATH"
+          echo "/usr/bin/python3.9" >> $GITHUB_PATH
+          echo "/usr/bin/python3.9" >> $PATH
+
+      - name: Verify Python Version
+        run: |
+          python3.9 --version
+          python3 --version
 
       - name: Install Buildozer dependencies
         run: |
@@ -34,11 +45,6 @@ jobs:
       - name: Install Buildozer and Cython
         run: |
           pip install --upgrade buildozer cython
-
-      - name: Verify Python Version
-        run: |
-          python3.9 --version
-          python3 --version
 
       - name: Get Date
         id: get-date
@@ -57,6 +63,8 @@ jobs:
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
 
       - name: Build with Buildozer
+        env:
+          PATH: /opt/hostedtoolcache/Python/3.9.19/x64/bin:$PATH
         run: |
           buildozer android debug
 
