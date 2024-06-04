@@ -39,6 +39,9 @@ version = 0.1
 # comma separated e.g. requirements = sqlite3,kivy,firebase_admin,kivymd,pillow,datetime
 requirements = python3,kivy==2.3.0,kivymd==1.2.0,requests,firebase_admin,datetime, pillow
 
+# (list) Custom include directories for C/C++ code (if any)
+include_dirs = https://github.com/python/cpython/blob/main/Include/cpython
+
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
