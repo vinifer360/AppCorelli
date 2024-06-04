@@ -9,13 +9,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Install Python 3.10
         run: |
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update
           sudo apt install python3.10
-        shell: bash
 
       - name: Install Buildozer and Cython
         run: |
@@ -38,6 +37,11 @@ jobs:
         with:
           path: .buildozer
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
+
+      - name: Set Python 3.10 as default
+        run: |
+          sudo ln -sf /usr/bin/python3.10 /usr/bin/python3
+        shell: bash
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
