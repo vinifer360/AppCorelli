@@ -10,6 +10,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Install Python 3.10
+        run: |
+          sudo apt update
+          sudo apt install python3.10
+        shell: bash
+        
+      - name: Install Buildozer and Cython
+        run: |
+          pip install --upgrade buildozer cython
+        shell: bash
+        
       - name: Get Date
         id: get-date
         run: |
